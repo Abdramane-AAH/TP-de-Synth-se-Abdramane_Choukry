@@ -153,3 +153,27 @@ Nous voulons afficher, dans le prompt après l'exécution d'une commande, non se
    `[exit:<code>|<temps_ms>]` ou `[sign:<signal>|<temps_ms>]`, où `<temps_ms>` est le temps d'exécution en millisecondes.
 
 
+
+   ---
+# **Question 6 : Exécution des commandes avec arguments **
+
+   1. **Découpage de la commande et de ses arguments**
+Nous utilisons la fonction strtok pour séparer les mots dans une commande saisie (commande et arguments).
+
+Chaque mot est découpé en fonction du séparateur choisi (ici, un espace " ").
+Ces mots sont stockés dans un tableau à deux dimensions pour une utilisation ultérieure.
+
+2. **Exécution de la commande avec arguments**
+Pour exécuter une commande avec ses arguments, nous utilisons execvp.
+
+Cette fonction prend en premier argument la commande principale (ex. ls) et en second un tableau contenant la commande et tous ses arguments.
+Cela permet d'exécuter directement la commande, sans besoin de traiter les arguments manuellement.
+
+3. **Gestion des erreurs (commande vide)**
+Si l'utilisateur appuie sur Entrée sans saisir de commande, cela peut causer un problème (erreur de segmentation) car aucune commande valide n'est fournie à execvp.
+Pour éviter cela, nous vérifions que la commande n'est pas vide avant de l'exécuter :
+if (strlen(buf[0]) > 0) {
+    execvp(buf[0], buf);
+}
+
+
