@@ -72,7 +72,7 @@ if (pid == 0) {
 3. **Solution avec `Retour au prompt et attente de la commande suivante` :**  
   La boucle while(1) maintient le cycle lecture → exécution → affichage.
 
-# **3. Gestion de la sortie du shell**
+# **Question 3 : Gestion de la sortie du shell**
 Code associé :
 if (strcmp("exit", buf[0]) == 0 || commande_size == 0) {
     write(1, "Bye bye...\n", strlen("Bye bye...\n"));
