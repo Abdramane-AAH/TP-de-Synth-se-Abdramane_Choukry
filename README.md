@@ -80,8 +80,17 @@ if (strcmp("exit", buf[0]) == 0 || commande_size == 0) {
 }
 **Explication** :
 
-Si l'utilisateur tape exit, ou si un <Ctrl+D> (EOF) est détecté, le programme affiche "Bye bye..." et termine.
-Cela satisfait les conditions de sortie demandées.
+Comparaison avec "exit"
+
+La fonction strcmp est utilisée pour vérifier si la commande entrée est "exit".
+
+Si strcmp("exit", buf[0]) == 0, cela signifie que l'utilisateur souhaite quitter.
+Gestion de <Ctrl+D>
+
+La détection d'un <Ctrl+D> (fin d'entrée) est indiquée par commande_size == 0.
+Action
+
+Si l'une des conditions est remplie, le message Bye bye... est affiché avec write, puis le shell est terminé grâce à exit(EXIT_FAILURE);.
 
 ---
 
