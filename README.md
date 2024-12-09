@@ -94,3 +94,40 @@ Si l'une des conditions est remplie, le message Bye bye... est affiché avec wri
 
 ---
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+
+# **Question 5 : Mesure du Temps d'Exécution et Affichage dans le Prompt**
+
+## Objectif
+Nous voulons afficher, dans le prompt après l'exécution d'une commande, non seulement le code de retour ou le signal, mais aussi le temps d'exécution de la commande. Ce temps est mesuré en millisecondes à l'aide de `clock_gettime()`.
+
+## Mécanisme
+
+1. **Mesure du Temps avec `clock_gettime` :**
+   - **Avant l'exécution du processus fils :** Récupérer l'heure de départ avec `clock_gettime()`.
+   - **Après la fin de l'exécution du processus fils :** Récupérer l'heure de fin avec `clock_gettime()`.
+   - **Calcul du Temps d'Exécution :** La différence entre les temps de départ et de fin donne le temps d'exécution en secondes et nanosecondes.
+
+2. **Calcul du Temps d'Exécution en Millisecondes :**
+   - La différence des valeurs de `tv_sec` (secondes) et `tv_nsec` (nanosecondes) est convertie en millisecondes pour plus de précision.
+
+3. **Affichage dans le Prompt :**
+   Le prompt affiche à la fin de chaque commande :  
+   `[exit:<code>|<temps_ms>]` ou `[sign:<signal>|<temps_ms>]`, où `<temps_ms>` est le temps d'exécution en millisecondes.
+
+
