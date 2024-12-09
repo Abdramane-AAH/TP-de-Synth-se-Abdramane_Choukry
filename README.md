@@ -20,7 +20,6 @@ Pour réaliser cette étape, nous utilisons les fonctions suivantes de la librai
 - **`read(int fd, const void *buf, size_t buf_size)`**  
   Permet de lire des données saisies au clavier ou depuis un fichier.
 
----
 
 ### **Paramètres des fonctions**
 
@@ -35,7 +34,6 @@ Pour réaliser cette étape, nous utilisons les fonctions suivantes de la librai
 
 3. **`buf_size`** : la taille maximale (en octets) de la zone mémoire pointée par `buf`.
 
----
 
 ## **Utilisation dans le Projet**
 
@@ -54,7 +52,7 @@ Dans cette étape, l'objectif est de lire une commande saisie dans le terminal, 
 
 2. **Exécution avec `execlp` :**  
    La commande lue est exécutée avec `execlp`. Les arguments incluent le nom de la commande et ses options, suivis d'un `NULL`.  
-   ⚠️ **Problème** : `execlp` interrompt le processus en cours, ce qui fait quitter le shell.  
+    **Problème** : `execlp` interrompt le processus en cours, ce qui fait quitter le shell.  
 
 3. **Solution avec `fork` :**  
    Pour éviter de quitter le shell, `fork` est utilisé pour exécuter la commande dans un processus fils.  
