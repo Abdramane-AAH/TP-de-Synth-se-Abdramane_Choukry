@@ -39,6 +39,11 @@ Pour réaliser cette étape, nous utilisons les fonctions suivantes de la librai
 
 - La fonction `write` est utilisée pour afficher le message d’accueil. Ici, la taille de `buf` correspond exactement à la longueur du texte à afficher.
 - La fonction `read` est utilisée pour lire les commandes utilisateur saisies au clavier. Le tampon de stockage doit être suffisamment grand pour contenir ces commandes.
+- 
+## **Fonction Supplémentaire : strlen**
+
+Nous utilisons également la fonction `strlen` de la librairie `string.h` pour obtenir la longueur (de type `int`) d’une chaîne de caractères. Cela est particulièrement utile pour déterminer la taille de `buf` avant d’écrire les données.
+
 
 ---
 
@@ -59,11 +64,6 @@ Dans cette étape, l'objectif est de lire une commande saisie dans le terminal, 
    - Le processus père utilise `wait` pour attendre la fin du processus fils.  
    - Cela permet de rester dans le shell tout en exécutant plusieurs commandes successives.
 
-
-
-## **Fonction Supplémentaire : strlen**
-
-Nous utilisons également la fonction `strlen` de la librairie `string.h` pour obtenir la longueur (de type `int`) d’une chaîne de caractères. Cela est particulièrement utile pour déterminer la taille de `buf` avant d’écrire les données.
 
 ---
 
