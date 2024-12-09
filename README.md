@@ -59,10 +59,11 @@ Dans cette étape, l'objectif est de lire une commande saisie dans le terminal, 
    - Le processus père utilise `wait` pour attendre la fin du processus fils.  
    - Cela permet de rester dans le shell tout en exécutant plusieurs commandes successives.
 
----
+
 
 ## **Fonction Supplémentaire : strlen**
 
 Nous utilisons également la fonction `strlen` de la librairie `string.h` pour obtenir la longueur (de type `int`) d’une chaîne de caractères. Cela est particulièrement utile pour déterminer la taille de `buf` avant d’écrire les données.
 
+---
 
