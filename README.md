@@ -92,7 +92,30 @@ Action
 Si l'une des conditions est remplie, le message Bye bye... est affiché avec write, puis le shell est terminé grâce à exit(EXIT_FAILURE);.
 
 ---
+# **Question 4 : Affichage de l'État du Processus dans le Prompt**
 
+## Objectif
+Modifier le prompt de notre shell pour qu'il affiche l'état du processus fils après l'exécution d'une commande, indiquant si le processus s'est terminé correctement ou s'il a été interrompu par un signal.
+
+## Mécanisme
+
+1. **Récupérer l'état du processus fils :**
+   - Après l'exécution d'une commande, on attend la fin du processus avec `wait(&status)`.
+   - Ensuite, on teste l'état de fin avec deux fonctions différentes :
+     - **Si le processus se termine normalement** : La fonction `WIFEXITED(status)` renvoie `true` et on peut récupérer le code de retour avec `WEXITSTATUS(status)`.
+     - **Si le processus est interrompu par un signal** : La fonction `WIFSIGNALED(status)` renvoie `true` et on peut récupérer le signal d'interruption avec `WTERMSIG(status)`.
+
+2. **Affichage dans le prompt :**
+   - Si le processus se termine correctement, on affiche `[exit:<code_de_retour>]`.
+   - Si le processus est interrompu par un signal, on affiche `[sign:<code_du_signal>]`.
+
+## Problème rencontré
+
+- Lorsque la commande n'est pas reconnue (par exemple, une commande inexistante ou juste un Enter), le prompt se réaffiche, mais aucun message de terminaison du processus fils n'est affiché. Cela s'explique par le fait que `execlp` renvoie `-1` en cas d'erreur, et dans ce cas, le processus fils continue l'exécution des lignes suivantes.
+
+## Solution
+
+- Pour garantir que le prompt affiche bien un code de retour, même en cas d'erreur, on ajoute un appel à `exit(123)` dans le processus fils après l'échec de `execlp`, avec `123` comme code de sortie personnalisé (différent de `0` pour signaler une erreur).
 
 
 
