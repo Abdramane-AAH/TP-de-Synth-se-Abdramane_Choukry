@@ -44,6 +44,25 @@ Pour réaliser cette étape, nous utilisons les fonctions suivantes de la librai
 
 ---
 
+# **Question 2 : Lecture et Exécution des Commandes**
+
+Dans cette étape, l'objectif est de lire une commande saisie dans le terminal, l'exécuter et revenir au prompt sans quitter le shell.  
+
+## **Fonctionnement et Solutions**
+1. **Lecture avec `read` :**  
+   La fonction `read` lit la commande saisie et la stocke dans un tableau `CommandLine`. Le caractère `\n` (fin de ligne) est remplacé par `\0` pour indiquer la fin de la chaîne.  
+
+2. **Exécution avec `execlp` :**  
+   La commande lue est exécutée avec `execlp`. Les arguments incluent le nom de la commande et ses options, suivis d'un `NULL`.  
+   ⚠️ **Problème** : `execlp` interrompt le processus en cours, ce qui fait quitter le shell.  
+
+3. **Solution avec `fork` :**  
+   Pour éviter de quitter le shell, `fork` est utilisé pour exécuter la commande dans un processus fils.  
+   - Le processus père utilise `wait` pour attendre la fin du processus fils.  
+   - Cela permet de rester dans le shell tout en exécutant plusieurs commandes successives.
+
+---
+
 ## **Fonction Supplémentaire : strlen**
 
 Nous utilisons également la fonction `strlen` de la librairie `string.h` pour obtenir la longueur (de type `int`) d’une chaîne de caractères. Cela est particulièrement utile pour déterminer la taille de `buf` avant d’écrire les données.
