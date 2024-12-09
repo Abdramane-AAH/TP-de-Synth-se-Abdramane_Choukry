@@ -8,7 +8,6 @@
 
 Dans cette première étape, l’objectif est d’afficher un **message d’accueil** suivi d’un **prompt**, qui indique que le terminal est prêt à recevoir une commande.
 
----
 
 ## **Fonctions utilisées**
 
